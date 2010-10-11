@@ -56,7 +56,7 @@ include "class_Fachada_sql.php";
             //verifica los datos de los elementos del formulario
             if ((preg_match($patron0, $this->Nombre))&& (preg_match($patron1, $this->Carnet)) &&
             (preg_match($patron2, $this->Carrera)) && (preg_match($patron3, $this->Indice))){
-               $facha_sql = Fachada_sql::retornarFachada2();
+               $facha_sql = Fachada_sql::retornarFachada_sql();
                $result = $facha_sql->insertar_estudiante($this->Nombre,$this->Carnet,
                                       $this->Carrera,$this->Indice,$this->Direccion);
                return $result;
@@ -75,7 +75,7 @@ include "class_Fachada_sql.php";
         ------------------------------------------------------------------------
         */
         public function Eliminar_e(){
-            $facha_sql = Fachada_sql::retornarFachada2();
+            $facha_sql = Fachada_sql::retornarFachada_sql();
             $facha_sql->Eliminar_estudiante($this->Carnet);
          }
 
@@ -99,7 +99,7 @@ include "class_Fachada_sql.php";
 
             if ((preg_match($patron0, $this->Nombre)) &&
             (preg_match($patron2, $this->Carrera)) && (preg_match($patron3, $this->Indice))){
-               $facha_sql = Fachada_sql::retornarFachada2();
+               $facha_sql = Fachada_sql::retornarFachada_sql();
                $result = $facha_sql->Modificar_estudiante($nom,$carr,$ind,$dir,$this->Carnet);
                return $result;
                

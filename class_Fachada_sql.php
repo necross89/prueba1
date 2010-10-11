@@ -9,7 +9,7 @@
 
 
 //Para retornar la instancia de la clase
-        public static function retornarFachada2(){
+        public static function retornarFachada_sql(){
             if (!isset(self::$inst)){
                 $nombreClass = __CLASS__;
                 self::$inst = new $nombreClass();
@@ -107,6 +107,27 @@
         }
 
 
+//funcion que es usada en la lista de estudiante en el metodo Consultar_e()
+//retorna la consulta con todos los estudiantes
+       public function Consultar_lista_e(){
+            include "sql_conf.php"; //archivo de configuracion de sql
+            $this -> count_Lista = 0;
+            $sql="SELECT * FROM estudiante";
+            //Conexion a la base de datos
+                $link = @mysql_connect($servidorx,$usuario,$contrasena) or die ("error al conectar ".mysql_error());
+                if ( isset($link) ){
+            // Luego mysql_select_db selecciona la base de datos, en este caso llamada "ejemplos"
+                   $select_db = @mysql_select_db($base_Datos,$link) or die("error al seleccionar la DB".mysql_error());
+                }
 
-    }
+                //Uso de la funcion ejecutar para mandarle el SQL a la BD.
+                $result = @mysql_query($sql,$link) or die ("error al ejecutar el $sql");
+                //Cerramos conexion
+                mysql_close($link);
+                return $result;
+      }
+
+
+
+  }
 ?>

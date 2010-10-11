@@ -51,8 +51,6 @@
             }
         }
 
-
-//
         public function Consultar_e_condiciones($nombre, $carnet, $carrera, $indice, $direccion){
             include "sql_conf.php"; //archivo de configuracion de sql
             $this -> count_Lista = 0;
