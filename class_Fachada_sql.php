@@ -81,7 +81,30 @@
          }
 
 
-        public function Modificar_estudiante(){}
+
+//Funcion que es usada en la clase estudiante para modificar los valores en la base de dato
+        public function Modificar_estudiante($nom,$carr,$ind,$dir,$Carnet){
+          include "sql_conf.php";//archivo que contiene las variables
+          $sql = "UPDATE estudiante SET
+                    nombre = '$nom',
+                    carrera = '$carr',
+                    indice = '$ind',
+                    direccion = '$dir'
+                    WHERE carnet = '$Carnet'
+                    ";
+          //Conexion a la base de datos
+          $link = @mysql_connect($servidor,$usuario,$contrasena) or die ("error al conectar ".mysql_error());
+          if ( isset($link) ){
+               // Luego mysql_select_db selecciona la base de datos, en este caso llamada "ejemplos"
+               $select_db = @mysql_select_db($base_Datos,$link) or die("error al seleccionar la DB".mysql_error());
+          }
+
+                //Uso de la funcion ejecutar para mandarle el SQL a la BD.
+          $result = @mysql_query($sql,$link) or die ("error al ejecutar el $sql");
+                //Cerramos conexion
+          mysql_close($link);
+          return $result;
+        }
 
 
 

@@ -91,15 +91,6 @@ include "class_Fachada_sql.php";
         ------------------------------------------------------------------------
         */
         public function Modificar($nom,$carr, $ind, $dir){
-            include "sql_conf.php";//archivo que contiene las variables
-            $sql = "UPDATE estudiante SET
-                    nombre = '{$nom}',
-                    carrera = '{$carr}',
-                    indice = '{$ind}',
-                    direccion = '{$dir}'
-                    WHERE carnet = '{$this -> Carnet}'
-                    ";
-
             //Validaciones de datos del estudiante.
             $patron0 = "/^[a-z]+(\s*[a-z]*)*$/i";
             $patron1 = "/^([0-9]{2})-([0-9]{5})$/";
@@ -108,19 +99,10 @@ include "class_Fachada_sql.php";
 
             if ((preg_match($patron0, $this->Nombre)) &&
             (preg_match($patron2, $this->Carrera)) && (preg_match($patron3, $this->Indice))){
-
-               //Conexion a la base de datos
-                $link = @mysql_connect($servidor,$usuario,$contrasena) or die ("error al conectar ".mysql_error());
-                if ( isset($link) ){
-                // Luego mysql_select_db selecciona la base de datos, en este caso llamada "ejemplos"
-                   $select_db = @mysql_select_db($base_Datos,$link) or die("error al seleccionar la DB".mysql_error());
-                }
-
-                //Uso de la funcion ejecutar para mandarle el SQL a la BD.
-                $result = @mysql_query($sql,$link) or die ("error al ejecutar el $sql");
-                //Cerramos conexion
-                mysql_close($link);
-                return $result;
+               $facha_sql = Fachada_sql::retornarFachada2();
+               $result = $facha_sql->Modificar_estudiante($nom,$carr,$ind,$dir,$this->Carnet);
+               return $result;
+               
             }else{
                 return false;
             }

@@ -64,7 +64,7 @@
                                         <img src="images/pic2.gif" alt="" /><div class="extra-wrap"><span><a href="insertar.php">Insertar</a></span><br/>Inserta el registro de un estudiante.</div>
                                     </li>
                                     <li>
-                                        <img src="images/pic3.gif" alt="" /><div class="extra-wrap"><span><a href="modificar.php">Modificar</a></span><br/>Modifica los datos de un estudiante.</div>
+                                        <img src="images/pic3.gif" alt="" /><div class="extra-wrap"><span><a href="selec_modificar.php">Modificar</a></span><br/>Modifica los datos de un estudiante.</div>
                                     </li>
                                     <li>
                                         <img src="images/pic4.gif" alt="" /><div class="extra-wrap"><span><a href="eliminar.php">Eliminar</a></span><br/>Elimina el registro de un estudiante.</div>
